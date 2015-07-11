@@ -21,6 +21,8 @@ ctypedef np.int_t DTYPE_t
 # this has is to a) insert checks that the function arguments really are
 # NumPy arrays, and b) make some attribute access like f.shape[0] much
 # more efficient. (In this example this doesn't matter though.)
+cimport cython
+@cython.boundscheck(False) # turn of bounds-checking for entire function
 def naive_convolve(np.ndarray[DTYPE_t,ndim=2] f, np.ndarray[DTYPE_t, ndim=2] g):
     if g.shape[0] % 2 != 1 or g.shape[1] % 2 != 1:
         raise ValueError("Only odd dimensions on filter supported")
