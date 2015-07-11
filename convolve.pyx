@@ -45,7 +45,8 @@ def naive_convolve(np.ndarray[DTYPE_t,ndim=2] f, np.ndarray[DTYPE_t, ndim=2] g):
     cdef int xmax = vmax + 2*smid
     cdef int ymax = wmax + 2*tmid
     cdef np.ndarray[DTYPE_t, ndim=2] h = np.zeros([xmax, ymax], dtype=DTYPE)
-    cdef int x, y, s, t, v, w
+    cdef int s, t
+    cdef unsigned int x, y, v, w
     # It is very important to type ALL your variables. You do not get any
     # warnings if not, only much slower code (they are implicitly typed as
     # Python objects).
@@ -65,8 +66,8 @@ def naive_convolve(np.ndarray[DTYPE_t,ndim=2] f, np.ndarray[DTYPE_t, ndim=2] g):
             value = 0
             for s in range(s_from, s_to):
                 for t in range(t_from, t_to):
-                    v = x - smid + s
-                    w = y - tmid + t
-                    value += g[smid - s, tmid - t] * f[v, w]
+                    v = <unsigned int>(x - smid + s)
+                    w = <unsigned int>(y - tmid + t)
+                    value += g[<unsigned int>(smid - s), <unsigned int>(tmid - t)] * f[v, w]
             h[x, y] = value
     return h
