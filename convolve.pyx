@@ -21,7 +21,7 @@ ctypedef np.int_t DTYPE_t
 # this has is to a) insert checks that the function arguments really are
 # NumPy arrays, and b) make some attribute access like f.shape[0] much
 # more efficient. (In this example this doesn't matter though.)
-def naive_convolve(np.ndarray f, np.ndarray g):
+def naive_convolve(np.ndarray[DTYPE_t,ndim=2] f, np.ndarray[DTYPE_t, ndim=2] g):
     if g.shape[0] % 2 != 1 or g.shape[1] % 2 != 1:
         raise ValueError("Only odd dimensions on filter supported")
     assert f.dtype == DTYPE and g.dtype == DTYPE
@@ -42,7 +42,7 @@ def naive_convolve(np.ndarray f, np.ndarray g):
     cdef int tmid = tmax // 2
     cdef int xmax = vmax + 2*smid
     cdef int ymax = wmax + 2*tmid
-    cdef np.ndarray h = np.zeros([xmax, ymax], dtype=DTYPE)
+    cdef np.ndarray[DTYPE_t, ndim=2] h = np.zeros([xmax, ymax], dtype=DTYPE)
     cdef int x, y, s, t, v, w
     # It is very important to type ALL your variables. You do not get any
     # warnings if not, only much slower code (they are implicitly typed as

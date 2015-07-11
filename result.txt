@@ -1,22 +1,22 @@
 (venv) $ time python profile_convolve.py
-Sat Jul 11 22:47:25 2015    Profile.prof
+Sat Jul 11 22:50:40 2015    Profile.prof
 
-         10 function calls in 0.382 seconds
+         10 function calls in 0.004 seconds
 
    Ordered by: internal time
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        1    0.382    0.382    0.382    0.382 convolve.pyx:24(naive_convolve)
+        1    0.003    0.003    0.003    0.003 convolve.pyx:24(naive_convolve)
+        1    0.000    0.000    0.004    0.004 {built-in method exec}
         2    0.000    0.000    0.000    0.000 {built-in method arange}
-        1    0.000    0.000    0.382    0.382 {built-in method exec}
-        1    0.000    0.000    0.382    0.382 profile_convolve.py:4(main)
         2    0.000    0.000    0.000    0.000 {method 'reshape' of 'numpy.ndarray' objects}
-        1    0.000    0.000    0.382    0.382 {convolve.naive_convolve}
-        1    0.000    0.000    0.382    0.382 <string>:1(<module>)
+        1    0.000    0.000    0.003    0.003 profile_convolve.py:4(main)
+        1    0.000    0.000    0.004    0.004 <string>:1(<module>)
+        1    0.000    0.000    0.003    0.003 {convolve.naive_convolve}
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 
 
 
-real	0m0.596s
-user	0m0.517s
-sys	0m0.044s
+real	0m0.204s
+user	0m0.129s
+sys	0m0.040s
